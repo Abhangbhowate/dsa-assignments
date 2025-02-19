@@ -1,53 +1,30 @@
-#include <stdio.h>
-int main()
-{
-    int n;
-    printf("Enter the number of elements:");
-    scanf("%d", &n);
-    int arr[n + 10];
-    for (int i = 0; i < n; i++)
-    {
-        printf("Enter the %d element:", i + 1);
-        scanf("%d", &arr[i]);
-    }
-    int cond;
-    printf("enter 1 if u want to insert element at first:\nenter 2 if u want to insert element at last:\nenter 3 if u want to insert element at any given position:");
-    scanf("%d", &cond);
 
-    if (cond == 1)
-    {
-        for (int i = n; i >= 0; i--)
-        {
-            arr[i + 1] = arr[i];
-        }
-        printf("enter the number you want to insert:");
-        scanf("%d", &arr[0]);
+#include<stdio.h>
+int main(){
+    int n,index1,index2;
+    printf("Enter the number of elements of the array:");
+    scanf("%d",&n);
+    int a[n];
+    printf("Enter the elements of array:\n");
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
     }
-    else if (cond == 2)
-    {
-        printf("enter the number you want to insert:");
-        scanf("%d", &arr[n]);
+    printf("Enter the index1 of array:\n");
+    scanf("%d",&index1);
+    printf("Enter the index2 of array:\n");
+    scanf("%d",&index2);
+    
+    while(index1<index2){
+        int p;
+        p=a[index1];
+        a[index1]=a[index2];
+        a[index2]=p;
+        index1++;
+        index2--;
     }
-    else if (cond == 3)
-    {
-        int x;
-        printf("enter the position you want to insert an element:");
-        scanf("%d", &x);
-        for (int i = n; i >= x - 1; i--)
-        {
-            arr[i + 1] = arr[i];
-        }
-        printf("enter the number you want to insert:");
-        scanf("%d", &arr[x - 1]);
+    printf("Sorted array:\n");
+    for(int i=0;i<n;i++){
+        printf("%d ",a[i]);
     }
-    else
-    {
-        printf("error");
-    }
-    for (int i = 0; i <= n; i++)
-    {
-        printf("the elements are:%d\n", arr[i]);
-    }
-
     return 0;
 }
