@@ -1,1 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+int main()
+{
+    int size;
+    printf("enter the size of linked list:");
+    scanf("%d", &size);
+    struct node *head = NULL, *temp, *nnode,*last;
+    int max=0,min=0,firstdata,lastdata;
+   
+    for (int i = 0; i < size; i++)
+    {
+        nnode = (struct node *)malloc(sizeof(struct node));
+        if (nnode == NULL)
+        {
+            printf("memory allocation failed!");
+            return 1;
+        }
+        printf("enter the value:");
+        scanf("%d", &nnode->data);
+        nnode->next = 0;
+        if (head == NULL)
+        {
+            head = nnode;
+            temp = nnode;
+            firstdata = nnode->data;
+            min = nnode->data;
+            max = nnode->data;
+        }
+        else
+        {
+            temp->next = nnode;
+            temp = nnode;
+        }
+        last=nnode;
+    }
+   
+    temp = head;
+    while (temp != NULL)
+    {
+        if (min > temp->data)
+        {
+            min = temp->data;
+            temp->data=head->data;
+            head->data=min;
+            last=temp;
+            temp = temp->next;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    lastdata = last->data;
+    temp = head;
+
+    while (temp != NULL)
+    {
+        if (max < temp->data)
+        {
+            max = temp->data;
+            temp->data=lastdata; 
+            temp = temp->next;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    // printf("%d\n",max);
+    // printf("%d\n",min);
+    
+    last->data=max;
+    printf("Printing the data of all nodes : ");
+    temp = head;
+    while (temp != NULL)
+    {
+        printf("%d\t", temp->data);
+        temp = temp->next;
+    }
+}
 
